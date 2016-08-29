@@ -91,27 +91,30 @@
     var commandBody = document.getElementById("command-body");
 
     var displayNext = function() {
-      var currentNumber = parseInt(commandNumber.dataset.number);
-      var nextNumber = currentNumber + 1
-      displayNumber(nextNumber);
-      displayBody(nextNumber);
+      var currentNumber = getCurrentNumber();
+      var nextNumber = currentNumber + 1;
+      outputNumber(nextNumber);
     }
 
     var displayPrevious = function() {
-      var currentNumber = parseInt(commandNumber.dataset.number);
+      var currentNumber = getCurrentNumber();
       var previousNumber = currentNumber - 1
-      displayNumber(previousNumber);
-      displayBody(previousNumber);
+      outputNumber(previousNumber);
     }
 
-    var displayNumber = function(number) {
+    var getCurrentNumber = function() {
+      return parseInt(commandNumber.dataset.number);
+    }
+
+    var outputNumber = function(number) {
       if (number > 0 && number < 11) {
         commandNumber.textContent = "No. " + number;
         commandNumber.dataset.number = number;
+        outputBody(number);
       }
     }
 
-    var displayBody = function(number) {
+    var outputBody = function(number) {
       if (number > 0 && number < 11) {
         commandBody.innerHTML = rawCommandments[number - 1]
       }
