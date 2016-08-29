@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>
+    10 Duel Commandments
+  </title>
+  <style type="text/css">
+    /* CSS GOES HERE
+     *
+     * Note: this is bad practice, we normally want to have this
+     * content in a separate file.
+     *
+     */
+
+    h1, h2 {
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+    }
+
+    th {
+      font-size: x-large;
+    }
+
+    td.commandment {
+      border: 1px solid black;
+    }
+
+    td#next {
+      text-align: left;
+    }
+
+    td#previous {
+      text-align: right;
+    }
+
+    td#next:hover, td#previous:hover {
+      color: blue;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>10 Duel Commandments</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>
+        </th>
+        <th id="command-number" data-number="1">
+          No. 1
+        </th>
+        <th>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td id="previous">
+          previous
+        </td>
+        <td class="commandment">
+          <h2 id="command-body">
+            The challenge: demand satisfaction<br />If they apologize, no need for further action
+          <h2>
+        </td>
+        <td id="next">
+          next
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <script>
+    /* JAVASCRIPT GOES HERE
+     *
+     * Note: this is bad practice, we normally want to have this
+     * content in a separate file.
+     *
+     */
+
+    var rawCommandments = ["The challenge: demand satisfaction<br />If they apologize, no need for further action","If they don't, grab a friend, that's your second<br />Your lieutenant when there's reckoning to be reckoned","Have your seconds meet face to face<br/ >Negotiate a peace, or negotiate a time and place<br />This is commonplace, 'specially 'tween recruits<br />Most disputes die, and no one shoots","If they don't reach a peace, that's alright<br />Time to get some pistols and a doctor on site<br />You pay him in advance, you treat him with civility<br />You have him turn around so he can have deniability","Duel before the sun is in the sky<br />Pick a place to die where it's high and dry","Leave a note for your next of kin<br />Tell 'em where you been<br />Pray that Hell or Heaven lets you in","Confess your sins<br />Ready for the moment of adrenaline<br />When you finally face your opponent","Your last chance to negotiate<br />Send in your seconds, see if they can set the record straight","Look 'em in the eye, aim no higher<br />Summon all the courage you require<br />Then count: 1 2 3 4 5 6 7 8 9","Ten paces! Fire!"];
+
+    var next = document.getElementById("next");
+
+    var previous = document.getElementById("previous");
+
+    var commandNumber = document.getElementById("command-number");
+
+    var commandBody = document.getElementById("command-body");
+
+    var displayNext = function() {
+      var currentNumber = parseInt(commandNumber.dataset.number);
+      var nextNumber = currentNumber + 1
+      displayNumber(nextNumber);
+      displayBody(nextNumber);
+    }
+
+    var displayPrevious = function() {
+      var currentNumber = parseInt(commandNumber.dataset.number);
+      var previousNumber = currentNumber - 1
+      displayNumber(previousNumber);
+      displayBody(previousNumber);
+    }
+
+    var displayNumber = function(number) {
+      if (number > 0 && number < 11) {
+        commandNumber.textContent = "No. " + number;
+        commandNumber.dataset.number = number;
+      }
+    }
+
+    var displayBody = function(number) {
+      if (number > 0 && number < 11) {
+        commandBody.innerHTML = rawCommandments[number - 1]
+      }
+    }
+
+    previous.addEventListener("click", displayPrevious, false);
+
+    next.addEventListener("click", displayNext, false);
+
+  </script>
+</body>
+</html>
